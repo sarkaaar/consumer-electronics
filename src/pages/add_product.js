@@ -11,6 +11,8 @@ import Container from "@material-ui/core/Container";
 // import axios from "axios";
 import SiteHeader from "../components/SiteHeader";
 
+// console.log("hello world")
+
 const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%", // Fix IE 11 issue.
