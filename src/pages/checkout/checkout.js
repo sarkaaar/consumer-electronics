@@ -1,31 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
 import Paper from "@material-ui/core/Paper";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
-// import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
 import axios from "axios";
 import SiteHeader from "../../components/SiteHeader";
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -91,7 +76,6 @@ export default function Checkout() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-  // const [data, setData] = useState("");
   const shipping = JSON.parse(localStorage.getItem("shipping"));
   const payment = JSON.parse(localStorage.getItem("payment"));
 
@@ -116,7 +100,7 @@ export default function Checkout() {
       .catch(function (error) {
         console.log(error);
       });
-      
+
     setActiveStep(activeStep + 1);
   }
 
@@ -182,7 +166,6 @@ export default function Checkout() {
               )}
             </React.Fragment>
           </Paper>
-          {/* <Copyright /> */}
         </main>
       </React.Fragment>
     </div>

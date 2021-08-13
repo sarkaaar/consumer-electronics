@@ -6,22 +6,24 @@ import { Fab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { Link } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
-// import zIndex from "@material-ui/core/styles/zIndex";
+
 import Button from "@material-ui/core/Button";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../redux/counter";
 
 export default function Products() {
   const [cart, setCart] = useState([]);
-  const [neo, setNeo] = useState([]);
+
+  const { value } = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setCart((cart) => {
       console.log(cart);
-      // cart = localStorage.getItem("id");
-
-      // localStorage.setItem("id", cart);
       return cart;
     });
+
   }, [cart]);
 
   const useStyles = makeStyles((theme) => ({
@@ -33,6 +35,7 @@ export default function Products() {
     },
   }));
   const classes = useStyles();
+
   const { loading, error, data } = useFetch("http://localhost:1337/products");
   if (loading)
     return (
@@ -47,37 +50,10 @@ export default function Products() {
       </div>
     );
 
-  function AddToCart_(id) {
-    localStorage.setItem("id", cart);
-    // // const var = null;
-
-    // localStorage.getItem("id").length() === 0
-    //   ? localStorage.setItem("id", id)
-    //   : // localStorage.setItem("id", {localStorage.getItem("id"),id})
-    //     console.log("No Product Selected");
-
-    setCart([...cart, id]);
-    
-    axios.get("http://localhost:1337/products/" + id).then((res) => {
-      // var dt = { ...neo };
-      setNeo(...cart, ...res.data);
-
-      console.log(neo);
-    });
-    // console.log(cart);
-
-    // console.log("Added To cart");
-
-    // useEffect(() => {
-    //   setCart([...cart, id]);
-    // }, [cart]);
-    // console.log("add Cartto cart")
-
-    // localStorage.setItem("id",id)
-    // console.log(localStorage.getItem("id") )
-
-    // setCart(cart.push(id))
-    // console.log(cart)
+  function AddToCart_(id, name, price) {
+    // localStorage.setItem("id", cart);
+    var obj = { id: id, name: name, price: price };
+    setCart([...cart, obj]);
 
     // axios
     //   .post(
@@ -99,6 +75,14 @@ export default function Products() {
     <div className="product_body">
       <SiteHeader style={{ zIndex: 2 }} />
 
+      {/* <div className="text" style={{ marginTop: 150 }}> */}
+      {/* <h1>Counter = {value} </h1> */}
+
+      {/* <button onClick={() => dispatch(addToCart())}>Increment</button> */}
+      {/* <button onClick={() => dispatch(removeFromCart())}>Decrement</button> */}
+      {/* <button onClick={() => dispatch(incrementByAmount(33))}>Amount</button> */}
+      {/* </div> */}
+
       <Link to="/add_product">
         <Fab color="primary" aria-label="add" className={classes.addBtn}>
           <AddIcon />
@@ -116,35 +100,32 @@ export default function Products() {
             {/* <Grid item xs={2} sm={4} md={6} > */}
             <div key={product.id} className="product" style={{ zIndex: -1 }}>
               <ImgMediaCard obj={product} xs={2} sm={4} md={6} />
-              <Button
+              {/* <Button
                 size="small"
                 color="primary"
                 onClick={() => {
-                  AddToCart_(product.id);
+                  AddToCart_(product.id, product.name, product.price);
                   // AddToCart_(prod);
                 }}
               >
                 CART
-              </Button>
-              <Button
+              </Button> */}
+              {/* <Button
                 size="small"
                 color="primary"
                 onClick={() => {
-                  console.log(cart);
+                  dispatch(
+                    addToCart({
+                      id: product.id,
+                      name: product.name,
+                      price: product.price,
+                    })
+                  );
+                  console.log(value);
                 }}
               >
                 SHOW
-              </Button>
-              <Button
-                size="small"
-                color="primary"
-                onClick={() => {
-                  console.log(localStorage.getItem("cart"));
-                }}
-              >
-                localStorage
-              </Button>
-              {/* <ImgMediaCard obj={product} /> */}
+              </Button> */}
             </div>
           </Grid>
         ))}

@@ -37,12 +37,12 @@ export default function Review() {
   const classes = useStyles();
   const shipping = localStorage.getItem("shipping");
   const payment = localStorage.getItem("payment");
-  function sendData(){
-    // const token = localStorage.getItem("token");
-    console.log(shipping);
-    console.log(payment);
+  // function sendData(){
+  //   // const token = localStorage.getItem("token");
+  //   console.log(shipping);
+  //   console.log(payment);
 
-  }
+  // }
 
   return (
     <React.Fragment>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -9,7 +9,9 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 // import AddToCart from "./cart/AddToCart";
-import axios from "axios";
+// import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../redux/counter";
 
 const useStyles = makeStyles({
   root: {
@@ -20,63 +22,17 @@ const useStyles = makeStyles({
 
 export default function ImgMediaCard(props) {
   const prod = props.obj;
-  const classes = useStyles;
-  const [cart, setCart] = useState([]);
+  // const classes = useStyles;
+  // const [cart, setCart] = useState([]);
   let history = useHistory();
-  const token = localStorage.getItem("token");
-  const [cartTotal, setCartTotal] = useState([]);
-  const [local, setLocal] = useState(true);
 
-  // useEffect(() => {
-  //   total();
-  // }, [cart]);
+  const { value } = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
 
-  // console.log("add to cart");
-  useEffect(() => {
-    // setCartTotal([...cart]);
-    // console.log(cartTotal)
-  });
-
-  function AddToCart_() {
-    // local ? localStorage.setItem("id", null) : setLocal(false);
-    // // const var = null;
-
-    // localStorage.getItem("id").length() === 0
-    //   ? localStorage.setItem("id", id)
-    //   : // localStorage.setItem("id", {localStorage.getItem("id"),id})
-    //     console.log("No Product Selected");
-
-    setCart([...cart, prod.id]);
-    console.log(cart);
-
-    // console.log("Added To cart");
-
-    // useEffect(() => {
-    //   setCart([...cart, id]);
-    // }, [cart]);
-    // console.log("add to cart")
-
-    // localStorage.setItem("id",id)
-    // console.log(localStorage.getItem("id") )
-
-    // setCart(cart.push(id))
-    // console.log(cart)
-
-    // axios
-    //   .post(
-    //     "http://localhost:1337/carts",{prod_id:id}
-    //     // ,
-    //     // {
-    //     //   headers: { Authorization: `Bearer ${token}` },
-    //     // }
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-  }
+  // function AddToCart_() {
+  //   setCart([...cart, prod.id]);
+  //   console.log(cart);
+  // }
 
   return (
     <Card style={{ width: 400, height: 500 }}>
@@ -104,17 +60,28 @@ export default function ImgMediaCard(props) {
           <Typography variant="h5" color="textSecondary" component="p">
             {prod.description}
           </Typography>
-          <rating />
+          {/* <rating /> */}
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button
           size="small"
           color="primary"
+          onClick={() => {
+            dispatch(
+              addToCart({
+                id: prod.id,
+                name: prod.name,
+                price: prod.price,
+              })
+            );
+            console.log(value);
+          }}
           // onClick={() => {
           //   AddToCart_();
           //   // AddToCart_(prod);
           // }}
+
         >
           CART
         </Button>
