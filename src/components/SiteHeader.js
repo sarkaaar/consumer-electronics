@@ -12,10 +12,9 @@ import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-      position: "fixed",
-      top: 0,
-      width:"100%",
-
+    position: "fixed",
+    top: 0,
+    width: "100%",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -26,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SiteHeader() {
-
   const token = localStorage.getItem("token");
   // console.log(token);
 
@@ -49,28 +47,31 @@ export default function SiteHeader() {
           <Typography variant="h6" className={classes.title}>
             <Link to="/">CONSUMER ELECTRONICS</Link>
           </Typography>
-
-          <Button color="inherit">
-            <Link to={`/`} activeClassName="active">
-              Home
-            </Link>
-          </Button>
-          <Button color="inherit">
-            <Link to={`/products`} activeClassName="active">
-              Products
-            </Link>
-          </Button>
-          <Button color="inherit">
-            <Link to={`/Categories`} activeClassName="active">
-              Categories
-            </Link>
-          </Button>
-          <Button color="inherit">
-            <Link to={`/cart`} activeClassName="active">
-              Cart
-            </Link>
-          </Button>
-
+          <div>
+            <Button color="inherit">
+              <Link to={`/`} activeClassName="active">
+                Home
+              </Link>
+            </Button>
+            <Button color="inherit">
+              <Link to={`/products`} activeClassName="active">
+                Products
+              </Link>
+            </Button>
+          </div>
+          <div>
+            {" "}
+            <Button color="inherit">
+              <Link to={`/Categories`} activeClassName="active">
+                Categories
+              </Link>
+            </Button>
+            <Button color="inherit">
+              <Link to={`/cart`} activeClassName="active">
+                Cart
+              </Link>
+            </Button>
+          </div>
           {token ? (
             <div>
               <Button
@@ -98,8 +99,6 @@ export default function SiteHeader() {
               </Button>
             </div>
           )}
-
-
         </Toolbar>
       </AppBar>
     </div>

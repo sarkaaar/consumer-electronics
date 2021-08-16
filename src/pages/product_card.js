@@ -73,15 +73,11 @@ export default function ImgMediaCard(props) {
                 id: prod.id,
                 name: prod.name,
                 price: prod.price,
+                images:prod.images
               })
             );
             console.log(value);
           }}
-          // onClick={() => {
-          //   AddToCart_();
-          //   // AddToCart_(prod);
-          // }}
-
         >
           CART
         </Button>

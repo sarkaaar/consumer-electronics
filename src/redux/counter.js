@@ -11,7 +11,8 @@ export const counterSlice = createSlice({
     //  console.log(state.value)
     },
     removeFromCart: (state,action) => {
-      state.value -= 1
+      state.value.splice(action.payload,1)
+      // state.value -= 1
     },
     // incrementByAmount: (state, action) => {
     //   state.value += action.payload
