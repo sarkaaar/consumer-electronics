@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -8,8 +8,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import SiteHeader from "../components/SiteHeader";
+import { useHistory } from "react-router-dom";
 
-
+import axios from "axios";
 const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -22,6 +23,35 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+
+  const [name, setName] = useState();
+  const [price, setPrice] = useState();
+  const [description, setDescription] = useState();
+  const [quantity, setQuantity] = useState();
+
+  const token = localStorage.getItem("token");
+  const history = useHistory();
+
+  function addProd() {
+    axios
+      .post(
+        "http://localhost:1337/products",
+        {
+          name: name,
+          price: price,
+          quantity: quantity,
+          description: description,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
+      history.push('/add_product')
+  }
 
   return (
     <div>
@@ -41,6 +71,8 @@ export default function SignIn() {
               id="name"
               label="Name"
               name="name_"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -49,6 +81,9 @@ export default function SignIn() {
               name="description"
               label="Description"
               id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+
               // value={description}
             />
             <TextField
@@ -59,6 +94,8 @@ export default function SignIn() {
               id="price"
               label="price"
               name="price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
               // value={price}
               autoFocus
             />
@@ -70,6 +107,8 @@ export default function SignIn() {
               id="quantity"
               label="quantity"
               name="quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
               // value={quantity}
               autoFocus
             />
@@ -84,9 +123,9 @@ export default function SignIn() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              // onClick={(c)={
-              //     axios.post("http://localhost:1337/products",{name_,description,price,quantity})
-              // }}
+              onClick={() => {
+                addProd();
+              }}
             >
               SUBMIT
             </Button>

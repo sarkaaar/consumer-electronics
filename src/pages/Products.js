@@ -7,16 +7,16 @@ import AddIcon from "@material-ui/icons/Add";
 import { Link } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
 
-import Button from "@material-ui/core/Button";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../redux/counter";
+// import Button from "@material-ui/core/Button";
+// import axios from "axios";
+// import { useDispatch, useSelector } from "react-redux";
+// import { addToCart, removeFromCart } from "../redux/counter";
 
 export default function Products() {
   const [cart, setCart] = useState([]);
 
-  const { value } = useSelector((state) => state.counter);
-  const dispatch = useDispatch();
+  // const { value } = useSelector((state) => state.counter);
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     setCart((cart) => {
@@ -50,38 +50,15 @@ export default function Products() {
       </div>
     );
 
-  function AddToCart_(id, name, price) {
-    // localStorage.setItem("id", cart);
-    var obj = { id: id, name: name, price: price };
-    setCart([...cart, obj]);
-
-    // axios
-    //   .post(
-    //     "http://localhost:1337/carts",{prod_id:id}
-    //     // ,
-    //     // {
-    //     //   headers: { Authorization: `Bearer ${token}` },
-    //     // }
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-  }
+  // function AddToCart_(id, name, price) {
+  //   // localStorage.setItem("id", cart);
+  //   var obj = { id: id, name: name, price: price };
+  //   setCart([...cart, obj]);
+  // }
 
   return (
     <div className="product_body">
       <SiteHeader style={{ zIndex: 2 }} />
-
-      {/* <div className="text" style={{ marginTop: 150 }}> */}
-      {/* <h1>Counter = {value} </h1> */}
-
-      {/* <button onClick={() => dispatch(addToCart())}>Increment</button> */}
-      {/* <button onClick={() => dispatch(removeFromCart())}>Decrement</button> */}
-      {/* <button onClick={() => dispatch(incrementByAmount(33))}>Amount</button> */}
-      {/* </div> */}
 
       <Link to="/add_product">
         <Fab color="primary" aria-label="add" className={classes.addBtn}>
@@ -97,35 +74,8 @@ export default function Products() {
       >
         {data.map((product) => (
           <Grid item>
-            {/* <Grid item xs={2} sm={4} md={6} > */}
             <div key={product.id} className="product" style={{ zIndex: -1 }}>
               <ImgMediaCard obj={product} xs={2} sm={4} md={6} />
-              {/* <Button
-                size="small"
-                color="primary"
-                onClick={() => {
-                  AddToCart_(product.id, product.name, product.price);
-                  // AddToCart_(prod);
-                }}
-              >
-                CART
-              </Button> */}
-              {/* <Button
-                size="small"
-                color="primary"
-                onClick={() => {
-                  dispatch(
-                    addToCart({
-                      id: product.id,
-                      name: product.name,
-                      price: product.price,
-                    })
-                  );
-                  console.log(value);
-                }}
-              >
-                SHOW
-              </Button> */}
             </div>
           </Grid>
         ))}
