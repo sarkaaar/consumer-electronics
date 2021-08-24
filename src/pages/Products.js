@@ -23,7 +23,6 @@ export default function Products() {
       console.log(cart);
       return cart;
     });
-
   }, [cart]);
 
   const useStyles = makeStyles((theme) => ({
