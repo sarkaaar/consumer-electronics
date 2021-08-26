@@ -61,7 +61,7 @@ export default function SignIn() {
         // console.log(response);
         // console.log(response.data.jwt)
         localStorage.setItem("token", response.data.jwt);
-        // localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
         history.push("/products");
       })
       .catch(function (error) {
