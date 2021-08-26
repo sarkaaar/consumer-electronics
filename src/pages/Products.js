@@ -35,7 +35,7 @@ export default function Products() {
   }));
   const classes = useStyles();
 
-  const { loading, error, data } = useFetch("http://localhost:1337/products");
+  const { loading, error, data } = useFetch("https://ce-strapi-server.herokuapp.com/products");
   if (loading)
     return (
       <div>

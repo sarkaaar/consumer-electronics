@@ -64,7 +64,7 @@ export default function Cart() {
           onClick={() => {
             axios
               .post(
-                "http://localhost:1337/carts",
+                "https://ce-strapi-server.herokuapp.com/carts",
                 { prod_id: value },
                 {
                   headers: { Authorization: `Bearer ${token}` },

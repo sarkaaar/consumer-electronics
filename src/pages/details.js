@@ -16,7 +16,7 @@ export default function ImgMediaCard(props) {
   console.log(id);
 
   const { loading, error, data } = useFetch(
-    "http://localhost:1337/products/" + id
+    "https://ce-strapi-server.herokuapp.com/products/" + id
   );
   if (loading)
     return (

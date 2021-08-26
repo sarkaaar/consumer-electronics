@@ -55,6 +55,8 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+
+  // not working this function
   function sign_up() {
     axios.post("http://localhost:1337/users", {
       username: name,

@@ -53,7 +53,7 @@ export default function SignIn() {
 
   function login() {
     axios
-      .post("http://localhost:1337/auth/local", {
+      .post("https://ce-strapi-server.herokuapp.com/auth/local", {
         identifier: email,
         password: password,
       })

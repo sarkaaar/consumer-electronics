@@ -7,7 +7,7 @@ import { Grid } from "@material-ui/core";
 import SiteHeader from "../components/SiteHeader";
 
 export default function Categories() {
-  const { loading, error, data } = useFetch("http://localhost:1337/categories");
+  const { loading, error, data } = useFetch("https://ce-strapi-server.herokuapp.com/categories");
   if (loading)
     return (
       <div>

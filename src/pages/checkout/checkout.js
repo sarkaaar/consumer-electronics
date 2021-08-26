@@ -88,7 +88,7 @@ export default function Checkout() {
 
     axios
       .post(
-        "http://localhost:1337/checkouts",
+        "https://ce-strapi-server.herokuapp.com/checkouts",
         { ...shipping, ...payment },
         {
           headers: { Authorization: `Bearer ${token}` },

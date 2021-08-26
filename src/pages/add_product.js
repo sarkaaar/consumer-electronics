@@ -35,7 +35,7 @@ export default function SignIn() {
   function addProd() {
     axios
       .post(
-        "http://localhost:1337/products",
+        "https://ce-strapi-server.herokuapp.com/products",
         {
           name: name,
           price: price,
