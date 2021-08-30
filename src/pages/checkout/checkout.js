@@ -11,6 +11,7 @@ import PaymentForm from "./PaymentForm";
 import Review from "./Review";
 import axios from "axios";
 import SiteHeader from "../../components/SiteHeader";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -69,6 +70,9 @@ export default function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
+  const { value } = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
+
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -80,12 +84,9 @@ export default function Checkout() {
   const payment = JSON.parse(localStorage.getItem("payment"));
 
   const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
 
   function showData() {
-    // console.log("The Final Object is");
-    // console.log({ ...shipping, ...payment });
-    // console.log("The final object was ");
-
     axios
       .post(
         "https://ce-strapi-server.herokuapp.com/checkouts",
@@ -102,6 +103,36 @@ export default function Checkout() {
       });
 
     setActiveStep(activeStep + 1);
+
+    // axios.post("http://localhost:1337/orders",{})
+  }
+
+  function orderPlace() {
+    axios
+      .post("http://localhost:1337/orders", {
+        user_credentials: { email: JSON.parse(user).email },
+        payment_details: { ...shipping, ...payment },
+        products: { value },
+      })
+      .then(function (response) {
+        console.log(response);
+        console.log("all done")
+        localStorage.setItem("_id",response.data._id)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    // user_credentials
+    // console.log(JSON.parse(user))
+
+    console.log(value);
+
+    // user_credentials
+    // payment_details
+    // products
+
+    // console.log(JSON.parse(user).email)
   }
 
   return (
@@ -127,7 +158,7 @@ export default function Checkout() {
                     Thank you for your order.
                   </Typography>
                   <Typography variant="subtitle1">
-                    Your order number is #2001539. We have emailed your order
+                    Your order number is {localStorage.getItem("_id")}. We have emailed your order
                     confirmation, and will send you an update when your order
                     has shipped.
                   </Typography>
@@ -143,14 +174,24 @@ export default function Checkout() {
                     )}
 
                     {activeStep === steps.length - 1 ? (
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={showData}
-                        className={classes.button}
-                      >
-                        Place order
-                      </Button>
+                      <div>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={showData}
+                          className={classes.button}
+                        >
+                          Place order
+                        </Button>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={orderPlace}
+                          className={classes.button}
+                        >
+                          Test{" "}
+                        </Button>
+                      </div>
                     ) : (
                       <Button
                         variant="contained"

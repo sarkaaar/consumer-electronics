@@ -1,21 +1,9 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-// import { Text } from "@material-ui/core";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 
-const useStyles = makeStyles((theme) => ({
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(5),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
-export default function Quantity() {
+export default function Quantity(props) {
   // const classes = useStyles();
   const [qty, setQty] = useState(1);
 
@@ -28,27 +16,34 @@ export default function Quantity() {
   }
 
   return (
-    <div style={{ display: "flex" }}>
+    <div
+      style={{
+        display: "flex",
+        marginLeft: 15,
+        border: "2px solid black",
+        background: "grey",
+      }}
+    >
       <Button
         disabled={qty === 1 ? true : false}
         onClick={() => {
           decrement();
         }}
-        // style={{ background: "#ffffff" }}
       >
         <RemoveIcon />
       </Button>
-      
-      <p style={{ background: "#ffffff", padding: 25 }}>{qty}</p>
 
+      <p style={{ background: "#ffffff", padding: 25 }}>{qty}</p>
+      {console.log(qty)}
       <Button
         onClick={() => {
           increment();
+
         }}
-        // style={{ background: "#ffffff" }}
       >
         <AddIcon />
       </Button>
+    {/* {return qty} */}
     </div>
   );
 }

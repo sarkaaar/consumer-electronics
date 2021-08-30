@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -10,6 +11,11 @@ import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/counter";
+import Quantity from "../components/Quantity";
+import { Grid } from "@material-ui/core";
+import qty from "../components/Quantity";
+import RemoveIcon from "@material-ui/icons/Remove";
+import AddIcon from "@material-ui/icons/Add";
 
 const useStyles = makeStyles({
   root: {
@@ -22,13 +28,20 @@ export default function ImgMediaCard(props) {
   const prod = props.obj;
   let history = useHistory();
 
-  const { value } = useSelector((state) => state.counter);
+  const [qty, setQty] = useState(1);
+
+  function increment() {
+    setQty(qty + 1);
+  }
+
+  function decrement() {
+    setQty(qty - 1);
+  }
+
+  // const { value } = useSelector((state) => state.counter);
   const dispatch = useDispatch();
 
-  // function AddToCart_() {
-  //   setCart([...cart, prod.id]);
-  //   console.log(cart);
-  // }
+  // useEffect(() => {console.log(this.Quantity)});
 
   return (
     <Card style={{ width: 400, height: 500 }}>
@@ -45,18 +58,52 @@ export default function ImgMediaCard(props) {
           title="product"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {prod.name}
-          </Typography>
+          <Grid container>
+            <Grid item>
+              <Typography gutterBottom variant="h5" component="h2">
+                {prod.name}
+              </Typography>
 
-          <Typography gutterBottom variant="h5" component="h2">
-            {prod.price}
-          </Typography>
+              <Typography gutterBottom variant="h5" component="h2">
+                {prod.price}
+              </Typography>
 
-          <Typography variant="h5" color="textSecondary" component="p">
+              {/* <Typography variant="h5" color="textSecondary" component="p">
             {prod.description}
-          </Typography>
-          {/* <rating /> */}
+          </Typography> */}
+            </Grid>
+            <Grid item>
+              {/* <Quantity qty={1}/> */}
+
+              <div
+                style={{
+                  display: "flex",
+                  marginLeft: 15,
+                  border: "2px solid black",
+                  background: "grey",
+                }}
+              >
+                <Button
+                  disabled={qty === 1 ? true : false}
+                  onClick={() => {
+                    decrement();
+                  }}
+                >
+                  <RemoveIcon />
+                </Button>
+
+                <p style={{ background: "#ffffff", padding: 25 }}>{qty}</p>
+                {console.log(qty)}
+                <Button
+                  onClick={() => {
+                    increment();
+                  }}
+                >
+                  <AddIcon />
+                </Button>
+              </div>
+            </Grid>
+          </Grid>
         </CardContent>
       </CardActionArea>
       <CardActions>
@@ -69,10 +116,10 @@ export default function ImgMediaCard(props) {
                 id: prod.id,
                 name: prod.name,
                 price: prod.price,
-                images:prod.images
+                images: prod.images,
+                quantity: qty,
               })
             );
-            console.log(value);
           }}
         >
           CART

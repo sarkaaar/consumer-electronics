@@ -43,7 +43,7 @@ export default function Review() {
   const classes = useStyles();
   // const shipping = localStorage.getItem("shipping");
   // const payment = localStorage.getItem("payment");
-
+  const _id = localStorage.getItem("_id")
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

@@ -35,7 +35,10 @@ export default function Products() {
   }));
   const classes = useStyles();
 
-  const { loading, error, data } = useFetch("https://ce-strapi-server.herokuapp.com/products");
+  // const { loading, error, data } = useFetch("https://ce-strapi-server.herokuapp.com/products");
+  const { loading, error, data } = useFetch("http://localhost:1337/products");
+
+  
   if (loading)
     return (
       <div>
@@ -48,12 +51,6 @@ export default function Products() {
         <h2>Error 404...</h2>
       </div>
     );
-
-  // function AddToCart_(id, name, price) {
-  //   // localStorage.setItem("id", cart);
-  //   var obj = { id: id, name: name, price: price };
-  //   setCart([...cart, obj]);
-  // }
 
   return (
     <div className="product_body">
