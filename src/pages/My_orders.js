@@ -8,7 +8,7 @@ export default function My_orders() {
 
   useEffect(() => {
     axios
-      .get("http://ce-strapi-server.herokuapp.com/orders")
+      .get("https://ce-strapi-server.herokuapp.com/orders")
       .then((response) => {
         localStorage.setItem("order_response", response.data);
         setOrder(response.data);
