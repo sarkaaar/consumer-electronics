@@ -1,14 +1,10 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import SiteHeader from "../components/SiteHeader";
 import Quantity from "../components/Quantity";
 
-const useStyles = makeStyles({
-  root: {},
-});
 
 export default function ImgMediaCard(props) {
   // const styles = useStyles();

@@ -10,6 +10,7 @@ import user_profile from "./pages/user_profile";
 import details from "./pages/details";
 import checkout from "./pages/checkout/checkout";
 import cart from "./pages/Cart";
+import My_orders from "./pages/My_orders"
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
         <Route exact path="/profile" component={user_profile} />
         <Route exact path="/checkout" component={checkout} />
         <Route exact path="/cart" component={cart} />
+        <Route exact path="/myOrders" component={My_orders} />
+
+
       </Switch>
     </Router>
   );

@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -9,20 +8,13 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/counter";
-import Quantity from "../components/Quantity";
 import { Grid } from "@material-ui/core";
-import qty from "../components/Quantity";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 
-const useStyles = makeStyles({
-  root: {
-    width: 400,
-    height: 500,
-  },
-});
+
 
 export default function ImgMediaCard(props) {
   const prod = props.obj;
@@ -37,11 +29,7 @@ export default function ImgMediaCard(props) {
   function decrement() {
     setQty(qty - 1);
   }
-
-  // const { value } = useSelector((state) => state.counter);
   const dispatch = useDispatch();
-
-  // useEffect(() => {console.log(this.Quantity)});
 
   return (
     <Card style={{ width: 400, height: 500 }}>
@@ -67,14 +55,8 @@ export default function ImgMediaCard(props) {
               <Typography gutterBottom variant="h5" component="h2">
                 {prod.price}
               </Typography>
-
-              {/* <Typography variant="h5" color="textSecondary" component="p">
-            {prod.description}
-          </Typography> */}
             </Grid>
             <Grid item>
-              {/* <Quantity qty={1}/> */}
-
               <div
                 style={{
                   display: "flex",

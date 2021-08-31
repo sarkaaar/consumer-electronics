@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -26,10 +26,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SiteHeader() {
   const token = localStorage.getItem("token");
-  // console.log(token);
 
   const history = useHistory();
-  // console.log(localStorage.getItem("token"));
   const classes = useStyles();
 
   return (
@@ -45,35 +43,40 @@ export default function SiteHeader() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            <Link to="/">CONSUMER ELECTRONICS</Link>
+            <NavLink to="/">CONSUMER ELECTRONICS</NavLink>
           </Typography>
           <div>
             <Button color="inherit">
-              <Link to={`/`} activeClassName="active">
+              <NavLink to={`/`} activeClassName="active">
                 Home
-              </Link>
+              </NavLink>
             </Button>
             <Button color="inherit">
-              <Link to={`/products`} activeClassName="active">
+              <NavLink to={`/products`} activeClassName="active">
                 Products
-              </Link>
+              </NavLink>
             </Button>
           </div>
           <div>
             {" "}
             <Button color="inherit">
-              <Link to={`/Categories`} activeClassName="active">
+              <NavLink to={`/Categories`} activeClassName="active">
                 Categories
-              </Link>
+              </NavLink>
             </Button>
             <Button color="inherit">
-              <Link to={`/cart`} activeClassName="active">
+              <NavLink to={`/cart`} activeClassName="active">
                 Cart
-              </Link>
+              </NavLink>
             </Button>
           </div>
           {token ? (
             <div>
+              <Button color="inherit">
+                <NavLink to={`/myOrders`} activeClassName="active">
+                  My Orders
+                </NavLink>
+              </Button>
               <Button
                 color="inherit"
                 onClick={() => {
@@ -85,17 +88,17 @@ export default function SiteHeader() {
                 Logout
               </Button>
               <Button color="inherit">
-                <Link to={`/profile`} activeClassName="active">
+                <NavLink to={`/profile`} activeClassName="active">
                   PROFILE
-                </Link>
+                </NavLink>
               </Button>
             </div>
           ) : (
             <div>
               <Button color="inherit">
-                <Link to={`/login`} activeClassName="active">
+                <NavLink to={`/login`} activeClassName="active">
                   Login
-                </Link>
+                </NavLink>
               </Button>
             </div>
           )}

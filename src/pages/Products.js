@@ -7,11 +7,6 @@ import AddIcon from "@material-ui/icons/Add";
 import { Link } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
 
-// import Button from "@material-ui/core/Button";
-// import axios from "axios";
-// import { useDispatch, useSelector } from "react-redux";
-// import { addToCart, removeFromCart } from "../redux/counter";
-
 export default function Products() {
   const [cart, setCart] = useState([]);
 
@@ -35,8 +30,8 @@ export default function Products() {
   }));
   const classes = useStyles();
 
-  // const { loading, error, data } = useFetch("https://ce-strapi-server.herokuapp.com/products");
-  const { loading, error, data } = useFetch("http://localhost:1337/products");
+  const { loading, error, data } = useFetch("https://ce-strapi-server.herokuapp.com/products");
+  // const { loading, error, data } = useFetch("http://localhost:1337/products");
 
   
   if (loading)
